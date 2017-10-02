@@ -102,7 +102,7 @@
 	     ?>
         <tr> 
         <td><?php echo $countid;?></td>
-        <td><a href="viewdate.php?day=<?php echo date('Ymd',strtotime($date));?>"><?php echo date('m-d-y',strtotime($date));?></a></td>
+        <td><a href="viewdate.php?date=<?php echo date('Ymd',strtotime($date));?>"><?php echo date('m-d-y',strtotime($date));?></a></td>
         <td>Path</td>
         <td>Date</td>
         <?php } //end of foreach?>
