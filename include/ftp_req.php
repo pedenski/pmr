@@ -86,7 +86,7 @@ $getdeviceslist = getdeviceslist();
 			     		$sftp->get('/home/rconfig/data/'.$type.'/'.$equipment.'/'.$currentyear.'/'.$currentmonth.'/'.$currentday.'/'.$file,'/var/www/html/zild/pmr/rconfig/'.$currentyear.'/'.$currentyear.'_'.$currentmonth.'_'.$currentday.'_'.$equipment.'.txt');
 
 						//set path
-			     		$path = '/var/www/html/zild/pmr/rconfig/'.$currentyear.'/'.$currentyear.'_'.$currentmonth.'_'.$currentday.'_'.$equipment.'.txt';
+			     		$path = '/zild/pmr/rconfig/'.$currentyear.'/'.$currentyear.'_'.$currentmonth.'_'.$currentday.'_'.$equipment.'.txt';
 						//add 'key => link and value=> path' to existing array $row['$key'] = $val
 		     			$row['link'] = $path;
 			     		
