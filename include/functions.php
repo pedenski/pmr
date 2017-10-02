@@ -34,7 +34,6 @@ function insertdata($solarwindsdata) {
 	
 	!!if new entry, use 0
 	!!if not 0, add + 1 by getting last digit from group_id and add + 1
-
 	Array
 	(
 	    [0] => Array
@@ -43,7 +42,6 @@ function insertdata($solarwindsdata) {
 	        )
 
 	)*/
-
 	$count = ($row[0]['MAX(group_id)']) + 1; 
 
 	$query = "INSERT INTO pmr (id, group_id, interface_id, interface_name, last_time) VALUES (:id, :group_id, :interface_id, :interface_name, :last_time)";
@@ -64,6 +62,20 @@ function insertdata($solarwindsdata) {
 							  ':last_time'		=> $results->LastTime));
 		}
 }
+
+function getdatafromthis($day) {
+	$db = dbcon();
+
+	$query = "SELECT * FROM pmr_device_status 
+			  WHERE DATE(time_upload) = '{$day}'";
+    $q = $db->prepare($query);
+    $q->execute();
+    $q = $q->fetchALL(PDO::FETCH_ASSOC);
+    return $q;			  
+
+}
+
+
 
 //display netflow (index.php)
 function displaynetflow() {
@@ -185,13 +197,8 @@ function countfilesbydate(){
 
 }
 
-/* function gettoday() {
-	$today = date("Y-m-d");
-	return $today;
-	//$today = date('F j, Y',strtotime($today)); //convert to readable format
-	//return $today;
-}
-*/
+
+
 
 
 
