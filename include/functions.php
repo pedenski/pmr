@@ -63,11 +63,11 @@ function insertdata($solarwindsdata) {
 		}
 }
 
-function getdatafromthis($day) {
+function getdatafromthis($date) {
 	$db = dbcon();
 
 	$query = "SELECT * FROM pmr_device_status 
-			  WHERE DATE(time_upload) = '{$day}'";
+			  WHERE DATE(time_upload) = '{$date}'";
     $q = $db->prepare($query);
     $q->execute();
     $q = $q->fetchALL(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@ function getdatafromthis($day) {
 function displaynetflow() {
 	try {
 		$db = dbcon();
-		$query = "SELECT * FROM pmr";
+		$query = "SELECT *, COUNT(group_id) FROM pmr GROUP BY group_id";
 		$sql = $db->prepare($query);
 		$sql->execute();
 		$sql = $sql->fetchALL(PDO::FETCH_ASSOC);
@@ -212,5 +212,21 @@ function test($data) {
 function haha() {
 	echo "TESSST";
 }
+
+
+/* 
+
+BUG FIXING 
+- inputting '2017' or 201709 on php?date= returns the last existing record when it must be null.
+- generate netflow must not duplicate, date checker required
+
+NEXT
+- permalink for netflow
+- layout
+- finalize cron 
+
+
+
+*/
 ?>
 

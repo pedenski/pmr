@@ -14,7 +14,7 @@
   curl_setopt($ch, CURLOPT_TIMEOUT, 30);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $strdata);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_USERPWD, "admin:Inn0v@t10n");
+  curl_setopt($ch, CURLOPT_USERPWD, "admin:Inn0v@t10nSSA");
   //curl_setopt($ch, CURLOPT_HEADER, 1); // This will output response headers
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',

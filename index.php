@@ -19,7 +19,7 @@
   <body>
   <h2> PMR Netflow Statszzz </h2>
 
-   <a href="./generate.php"><button type="button">Generate</button></a>
+   <a href="./include/http_req.php"><button type="button">Generate</button></a>
 
    <!-- LOCAL TIME -->
    <?php 
@@ -38,6 +38,7 @@
       <td>INTERFACE</td>
       <td>LAST TIME</td>
       <td>STATUS</td>
+      <td>ENTRIES</td>
     </tr>
 
     <?php
@@ -48,6 +49,7 @@
           $interface    = $row['interface_name'];
           $netflowtime  = $row['last_time'];
           $servertime   = $row['server_time'];
+          $entries      = $row['COUNT(group_id)'];   
     ?>
     <tr>
     <td> <?php echo $gid; ?> </td>
@@ -56,7 +58,7 @@
           <?php
             //check if last_time contains a date. 
             if(!empty($netflowtime)){
-               echo date('F j, Y, g:i a', strtotime($netflowtime));
+               echo date('D F j, Y, g:i a', strtotime($netflowtime));
             } else { ?> 
             no data
      </td> 
@@ -67,6 +69,8 @@
             $sync = comparetime($netflowtime, $servertime);  ?>
            <?php echo $sync; ?>
      </td>
+     <td><?php echo $entries; ?></td>
+
      </tr>
            <?php } //end of foreach ?>
     </table>
@@ -76,9 +80,7 @@
     <div class="mar-bot-5"></div>
       <table class="example1">
       <tr>
-        <td>Number of Entries</td>
-        <td>Date</td>
-        <td>Path</td>
+        <td>Entries</td>
         <td>Date</td>
       </tr>
 
@@ -102,9 +104,7 @@
 	     ?>
         <tr> 
         <td><?php echo $countid;?></td>
-        <td><a href="viewdate.php?date=<?php echo date('Ymd',strtotime($date));?>"><?php echo date('m-d-y',strtotime($date));?></a></td>
-        <td>Path</td>
-        <td>Date</td>
+        <td><a href="viewdate.php?date=<?php echo date('Ymd',strtotime($date));?>"><?php echo date('D-M-j-Y',strtotime($date));?></a></td>
         <?php } //end of foreach?>
       </tr>
 

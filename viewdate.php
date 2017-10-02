@@ -20,47 +20,53 @@
 
 	//convert string to date format 
 	$day = strtotime($day);
-	$day = date('Y-m-d',$day);
+	$date = date('Y-m-d',$day);
 ?>
-	<table class="example1">
-	<tr>
-	  <td>ID</td>
-	  <td>TYPE</td>
-	  <td>DESCRIPTION</td>
-	  <td>BRAND</td>
-	  <td>LINK</td>
-	  <td>DATE UPLOADED</td>
-	</tr>
 
 	<?php
 	//retrieve data
-	$sql = getdatafromthis($day);
-	foreach($sql as $row){
-		$id 		= $row['id'];
-		$type 		= $row['type'];
-		$name 		= $row['equipment'];
-		$desc 		= $row['description'];
-		$brand 		= $row['brand'];
-		$link 		= $row['link'];
-		$upload 	= $row['time_upload'];
+	$sql = getdatafromthis($date);
+	if(!empty($sql)) { 
 	?>
+		<table class="example1">
+		<tr>
+		  <td>ID</td>
+		  <td>TYPE</td>
+		  <td>DESCRIPTION</td>
+		  <td>BRAND</td>
+		  <td>LINK</td>
+		  <td>DATE UPLOADED</td>
+		</tr>
 
-	<tr>
-		<td><?php echo $id; ?></td>	
-		<td><?php echo $type; ?></td>
-		<td><?php echo $desc; ?></td>
-		<td><?php echo $brand; ?></td>
-		<td><a href="<?php echo $link; ?>">
-			<?php echo $name; ?>.config
-			</a>
-			</td>
-		<td><?php echo $upload; ?></td>
+		<?php
+			foreach($sql as $row){
+			$id 		= $row['id'];
+			$type 		= $row['type'];
+			$name 		= $row['equipment'];
+			$desc 		= $row['description'];
+			$brand 		= $row['brand'];
+			$link 		= $row['link'];
+			$upload 	= $row['time_upload'];
 
-	</tr>
-	<?php } //foreach ?>
-	</table>
+		?>
+		<tr>
+			<td><?php echo $id; ?></td>	
+			<td><?php echo $type; ?></td>
+			<td><?php echo $desc; ?></td>
+			<td><?php echo $brand; ?></td>
+			<td><a href="<?php echo $link; ?>">
+				<?php echo $name; ?>.config
+				</a>
+				</td>
+			<td><?php echo $upload; ?></td>
 
-
+		</tr>
+			<?php } //foreach ?>
+		<?php } else {
+			echo "NO DATA - Contact zdmurai";
+		} ?>	
+		</table>
  </body>
 </html>
+
 
