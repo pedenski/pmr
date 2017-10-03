@@ -107,22 +107,7 @@ function displaynetflow() {
 	}
 }
 
-/*this is to check if server time stamp (the date the record was inserted, was the same in solwarwinds netflow time (m-d-y) (index.php)
-function comparetime($netflowtime, $servertime) {
-	$netflowtime = new DateTime($netflowtime);
-	$servertime = new DateTime($servertime);
-
-	$servertime = $servertime->format('m-d-Y');
-	$netflowtime = $netflowtime->format('m-d-Y');
-	
-	if($servertime == $netflowtime) {
-		return "synced";
-	}	else {
-		return "not synced";
-	}
-}*/
-
-
+//this is to check if server time stamp (the date the record was inserted, was the same in solwarwinds netflow time (m-d-y) (index.php)
 function comparetime($netflowtime, $servertime) {
 
 		//$netflowtime = new DateTime($netflowtime);
@@ -133,12 +118,6 @@ function comparetime($netflowtime, $servertime) {
 		} else {
 			echo "-";
 		}
-		
-
-
-	
-
-
 }
 
 
@@ -166,8 +145,6 @@ function getdeviceslist(){
 	} catch(PDOException $e ) {
 		echo 'Connection Failed:'.$e->getMessage();
 	}
-
-
 		//get list of devices
        /*$getdeviceslist = getdeviceslist();
         foreach($getdeviceslist as $row) {
