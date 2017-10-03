@@ -114,9 +114,9 @@ function comparetime($netflowtime, $servertime) {
 		$servertime = new DateTime($servertime);
 		$netflowtime = substr($netflowtime, 0, 10);
 		if($netflowtime == $servertime->format('Y-m-d')) {
-			echo "SYNC";
+			echo "<button type='button' class='btn btn-outline-success'>"."Sync"."</button>";
 		} else {
-			echo "-";
+			echo "<button type='button' class='btn btn-outline-danger'>"."Mismatch"."</button>";;
 		}
 }
 

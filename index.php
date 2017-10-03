@@ -1,26 +1,29 @@
 <?php include 'inc/header.php'; ?>
 
 <body>
-  <h2> PMR Netflow Statszzz </h2>
+  
 
-   <a href="./include/http_req.php"><button type="button">Generate</button></a>
+  <div class="wrapper">
+
+
+   <h2> PMR Netflow Statszzz </h2>
+   
 
    <!-- LOCAL TIME -->
    <?php 
           date_default_timezone_set('Asia/Manila');
           $today = date('F j, Y', time());
-          echo $today;
+        //  echo $today;
     ?>
    <!-- /LOCAL TIME -->
 
 
   <!-- DISPLAY NETFLOW -->
   <div class="mar-bot-5"></div>
-    <table class="example1">
+    <table class="table">
     <tr>
-      <td>ID</td>
-      <td>DATE</td>
-      <td>ENTRIES</td>
+      <a href="./lib/http_req.php"><button type="button" class="btn btn-outline-success">Generate</button></a>
+     
     </tr>
 
     <?php
@@ -35,28 +38,44 @@
     ?>
     <tr>
       <td> <?php echo $gid; ?> </td>
+      <td><span class="badge badge-pill badge-primary"><?php echo $entries; ?> Entries</span></td>
       <td>
-        <a href="viewdate.php?page=flow&date=<?php echo date('Ymd',strtotime($netflowtime));?>">
-            <?php
+
+        <!-- Block level -->
+        <div class="row">
+          <div class="col-5 text-truncate">
+              <a href="viewdate.php?page=flow&date=<?php echo date('Ymd',strtotime($netflowtime));?>">
+              <?php
               //check if last_time contains a date. 
               if(!empty($netflowtime)){
-                 echo date('D F j, Y, g:i a', strtotime($netflowtime));
-              } else { ?> 
+                 echo date('D F j, Y, g:i a', strtotime($netflowtime));?> </a>
+              <?php } else { ?> 
               no data
-        </a>
-       </td> 
-            <?php } //end of netflowtime else ?>
-      
-       <td><?php echo $entries; ?></td>
-     </tr>
-           <?php } //end of foreach ?>
+              <?php } //end of netflowtime else ?> 
+          </div>
+        </div>
+
+        <!-- Inline level -->
+        <span class="d-inline-block text-truncate" style="max-width:450px;">
+          <small>Praeterea iter est quasdam res quas ex communiPraeterea iter est quasdam res quas ex communi..</small>
+        </span>
+       
+      </td> 
+      <td>sdfsdf
+        <?php 
+         $e = comparetime($netflowtime, $servertime);?>
+        <?php echo $e; ?>
+      </td>
+     
+    </tr>
+         <?php } //end of foreach ?>
     </table>
 
     <!-- DISPLAY NET DEVICES -->
     <h2>Network Devices List </h2>
     <a href="./include/ftp_req.php"><button type="button">Generate</button></a>
     <div class="mar-bot-5"></div>
-      <table class="example1">
+      <table class="table">
       <tr>
         <td>Entries</td>
         <td>Date</td>
@@ -80,7 +99,8 @@
 
 
       </table>
-  </body>
+  </div><!--/wrapper-->
+</body>
 
 
 
