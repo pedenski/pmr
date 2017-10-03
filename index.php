@@ -35,7 +35,6 @@
     <table class="example1">
     <tr>
       <td>ID</td>
-      <td>INTERFACE</td>
       <td>LAST TIME</td>
       <td>STATUS</td>
       <td>ENTRIES</td>
@@ -53,14 +52,15 @@
     ?>
     <tr>
     <td> <?php echo $gid; ?> </td>
-    <td> <?php echo $interface; ?> </td>
     <td>
+      <a href="viewdate.php?page=flow&id=<?php echo date('Ymd',strtotime($netflowtime));?>">
           <?php
             //check if last_time contains a date. 
             if(!empty($netflowtime)){
                echo date('D F j, Y, g:i a', strtotime($netflowtime));
             } else { ?> 
             no data
+      </a>
      </td> 
           <?php } //end of netflowtime else ?>
      <td>
@@ -77,6 +77,7 @@
 
     <!-- DISPLAY NET DEVICES -->
     <h2>Network Devices List </h2>
+    <a href="./include/ftp_req.php"><button type="button">Generate</button></a>
     <div class="mar-bot-5"></div>
       <table class="example1">
       <tr>
@@ -85,19 +86,10 @@
       </tr>
 
 
-       <?php
-       //get list of devices
-       /*$getdeviceslist = getdeviceslist();
-        foreach($getdeviceslist as $row) {
-            $id        = $row['id'];
-            $type      = $row['type'];
-            $equipment = $row['equipment'];
-            $desc      = $row['description'];
-            $brand     = $row['brand'];*/
-
-		$countfilesbydate = countfilesbydate();
+     <?php
+     $countfilesbydate = countfilesbydate();
 		//print_r($countfilesbydate);
-			foreach($countfilesbydate as $row)    {
+			foreach($countfilesbydate as $row) {
 				$countid = $row['COUNT(id)'];
 				$date = $row['time_upload'];
 

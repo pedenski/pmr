@@ -40,7 +40,8 @@ if (!empty(compareyear($time))) {
 } 
 
 //checks if existing record for today already exists
-$val = checkexisting();
+$req = "stat";
+$val = checkexisting($req);
 $val = $val[0]['COUNT(id)'];
 if($val > 0) {
 	//contains data for today - dont insert

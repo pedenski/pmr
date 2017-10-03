@@ -132,6 +132,18 @@ function getdeviceslist(){
 	} catch(PDOException $e ) {
 		echo 'Connection Failed:'.$e->getMessage();
 	}
+
+
+		//get list of devices
+       /*$getdeviceslist = getdeviceslist();
+        foreach($getdeviceslist as $row) {
+            $id        = $row['id'];
+            $type      = $row['type'];
+            $equipment = $row['equipment'];
+            $desc      = $row['description'];
+            $brand     = $row['brand'];
+        */
+
 }
 
 
@@ -163,8 +175,25 @@ function insertrconfig($row) {
 
 
 //get rconfig info from db(ftp_req.php)
-function checkexisting(){
-	try {
+function checkexisting($req){
+	if($req == "flow") {
+		try {
+		$db = dbcon();
+		$date = date('Y-m-d'); //today
+
+		$query = "SELECT COUNT(group_id) from pmr WHERE DATE(server_time) = '{$date}' ";
+			
+		$sql = $db->prepare($query);
+		$sql->execute();
+		$sql = $sql->fetchALL(PDO::FETCH_ASSOC);
+		return $sql; 
+
+		} catch(PDOException $e ) {
+			echo 'Connection Failed:'.$e->getMessage();
+		}	
+
+	}elseif($req == "stat"){
+		try {
 		$db = dbcon();
 		$date = date('Y-m-d'); //today
 
@@ -175,9 +204,14 @@ function checkexisting(){
 		$sql = $sql->fetchALL(PDO::FETCH_ASSOC);
 		return $sql; 
 
-	} catch(PDOException $e ) {
-		echo 'Connection Failed:'.$e->getMessage();
+		} catch(PDOException $e ) {
+			echo 'Connection Failed:'.$e->getMessage();
+		}	
+		
 	}
+
+	
+	
 }
 
 //get all rconfig files and group by date
